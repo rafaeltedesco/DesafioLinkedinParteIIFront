@@ -7,7 +7,7 @@ export const Header = ()=> {
       {
         display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur', 
         backgroundColor: '#560bad',
-        height: '15vh'
+        height: '10vh'
     }}>
           <h1 style={{ color: '#fff'}}>Udemy Courses
           </h1>

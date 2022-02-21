@@ -3,9 +3,10 @@ import './App.css';
 import { Header } from './components';
 import Api from './services/api.js'
 import { AiOutlineArrowRight, AiOutlineArrowLeft  } from 'react-icons/ai'
+import { LoadingPage } from './pages';
 
 function App() {
-  
+  const [loading, setLoading] = React.useState(true)  
   const [courses, setCourses] = React.useState([])
   const [totalVisibleCourses, setTotalVisibleCourses] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -44,9 +45,11 @@ function App() {
 
 
   const loadDataFromApi = async (page = null, limit = null)=> {
+    setLoading(true)
     const {data: { rowCount, rows }} = await Api.get(page && limit ? `?page=${page}&limit=${limit}` : '')
     setCourses(rows)
     setTotalVisibleCourses(rowCount)
+    setLoading(false)
   }
 
   const renderCourses = ()=> {
@@ -64,11 +67,11 @@ function App() {
           <div className="card" style={
             {
               borderRadius: 7,  
-              maxWidth: 310,
-              width: 310,
-              minHeight: 320,
-              height: 320,
-              fontSize: '0.7rem',
+              maxWidth: 400,
+              width: 400,
+              minHeight: 520,
+              height: 520,
+              fontSize: '0.9rem',
               color: '#333',
               boxShadow: '0px 3px 10px -2px #444',
               display: 'flex',
@@ -82,7 +85,9 @@ function App() {
             <header className="card-header" style={{ textAlign: 'center', color: '#fff', 
             borderTopLeftRadius: 7,
             borderTopRightRadius: 7,
+            height:'140px',
             width: '100%',
+            
             }}>
               <div className="course-title-container">
                 <h3 className="course-title">
@@ -106,7 +111,9 @@ function App() {
             }}>
               <div className="row" style={{
                 display: 'flex',
-                justifyContent: 'space-around'
+                justifyContent: 'space-around',
+                
+                
               }}>
                 <div className="card-info">
                   <strong>Course id:</strong>
@@ -192,7 +199,7 @@ function App() {
     loadDataFromApi(currentPage, limit)
   }, [currentPage])
 
-  return (
+  return loading ? <LoadingPage /> : (
       <>
       <div className="page-info"
           style={
