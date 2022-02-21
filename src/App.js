@@ -14,7 +14,7 @@ function App() {
   const [currentPage, setCurrentPage] = React.useState(1)
   const [leftButtonDisabled, setLeftButtonDisabled] = React.useState(true)
   const [rightButtonDisabled, setRightButtonDisabled] = React.useState(false)
-  const [totalCoursesRegistered, setTotalCoursesRegistered] = React.useState(3678)
+  const totalCoursesRegistered = 3678
   const [totalPages, setTotalPages] = React.useState(0)
   const limit = 30
   
