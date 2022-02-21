@@ -27,6 +27,7 @@ export const Header = ({ setSearchKey, resetFounded, fetchApi, setLoading })=> {
       progress: undefined,
       })
     
+    setSearch('')
     inputRef.current.placeholder = 'Type here...'
     inputRef.current.focus()
   }
@@ -40,8 +41,7 @@ export const Header = ({ setSearchKey, resetFounded, fetchApi, setLoading })=> {
 
   const updateQuery = async () => {
     if (!canFetch()) {
-      rejectSearch()
-      setSearch('')
+      rejectSearch()  
       return
     }
     await doQuery()
@@ -51,7 +51,6 @@ export const Header = ({ setSearchKey, resetFounded, fetchApi, setLoading })=> {
     if (ev.key === 'Enter') {
       if (!canFetch()) {
         rejectSearch()
-        setSearch('')
         return
       }    
       await doQuery()
