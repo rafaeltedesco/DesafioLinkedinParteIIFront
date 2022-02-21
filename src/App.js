@@ -206,7 +206,17 @@ function App() {
 
 
   React.useEffect(()=> {
-    loadDataFromApi(currentPage, limit)
+    async function load(page) {
+      setLoading(true)
+      const {data: { rowCount, rows }} = await Api.get(page && limit ? `?page=${page}&limit=${limit}` : '')
+      setCourses(rows)
+      setTotalVisibleCourses(rowCount)
+      calculateTotalPages()
+      setLoading(false)
+    }
+    
+    load(currentPage)
+    
   }, [currentPage])
 
   return loading ? <LoadingPage /> : (
