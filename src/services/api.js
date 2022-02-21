@@ -16,6 +16,12 @@ class ApiService {
     return await this.api.get(resource || '/')
   }
 
+  async queryWord(word){
+    console.log(word, 'query')
+    return await this.api.get(`/search?courseName=${word}`)
+
+  }
+
 }
 
 export default new ApiService()
