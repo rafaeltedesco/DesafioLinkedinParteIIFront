@@ -48,13 +48,12 @@ export const Header = ({ setSearchKey, resetFounded, fetchApi, setLoading })=> {
   }
 
   const enterPressed = async(ev)=> {
-    if (!canFetch()) {
-      rejectSearch()
-      setSearch('')
-      return
-    }
-
     if (ev.key === 'Enter') {
+      if (!canFetch()) {
+        rejectSearch()
+        setSearch('')
+        return
+      }    
       await doQuery()
     }
     
