@@ -186,7 +186,7 @@ h3 {
 
 @media (max-width: 500px) {
   .card {
-    width: 300px;
+    width: 350px;
   }
   .search-box {
     margin-left: 0;
