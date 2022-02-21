@@ -33,7 +33,7 @@ function App() {
 
   const goToNextPage = () => {
     setCurrentPage(currentPage + 1)
-    if (currentPage > totalPages - 1) {
+    if (currentPage >= totalPages - 1) {
       setRightButtonDisabled(true)
       return
     }
